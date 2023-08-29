@@ -14,18 +14,35 @@ calculateButton.addEventListener('click', (e) => {
 
 
 // indsamling af data fra dom (model code fra MVC)
+function gatherInputData(){
+const myEuroRate = document.getElementById('euroRate').value;
+const myDollarRate = document.getElementById('dollarRate').value;
+const myDanishAmount = document.getElementById('danishAmount').value;
+
+makeExchange(myEuroRate, myDollarRate, myDanishAmount);
+}
 
 
 
 
 
 // håndterer data behandling  (controller code fra MVC)
+function makeExchange(myEuroRate, myDollarRate, myDanishAmount) {
+
+    let myDollars = calculateExchange(myDanishAmount, myDollarRate);
+    let myEuros = calculateExchange(myDanishAmount, myEuroRate);
+
+    showResult(myEuros, myDollars, myDanishAmount);
+}
+
 
 
 
 // sub funktion der udfører en opgave og returnerer et resultat.  stadig controller code i MVC
-
-
+function calculateExchange(amount, exchangeRate){
+    let totalAmount = amount / exchangeRate;
+    return totalAmount;
+}
 
 
 // viser resultatet  (view code fra MVC)
